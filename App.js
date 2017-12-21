@@ -17,11 +17,15 @@ setBook()
 
 
 getBook() {
-  AsyncStorage.getItem("myKey").then((value) => {
-
-    this.setState({istraukta: value});
-
-}).done();
+  try {
+    const value = await AsyncStorage.getItem('@MySuperStore:key');
+    if (value !== null){
+      // We have data!!
+      console.log(value);
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
 }
 
   render() {
